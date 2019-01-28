@@ -17,6 +17,8 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
+var fs = require("fs");
+var path = require("path");
 var shell = require("shelljs");
 
 function execute({ cmd, success, error, env, fatal = false, verbose = false }) {
@@ -37,4 +39,11 @@ function execute({ cmd, success, error, env, fatal = false, verbose = false }) {
   }
 }
 
-module.exports = { execute };
+function mkdirp(directory) {
+  if (!path.isAbsolute(directory)) return;
+  let parent = path.join(directory, "..");
+  if (parent !== path.join("/") && !fs.existsSync(parent)) mkdirp(parent);
+  if (!fs.existsSync(directory)) fs.mkdirSync(directory);
+}
+
+module.exports = { execute, mkdirp };

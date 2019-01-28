@@ -1,10 +1,10 @@
 # node-utils
 
-node-utils is a collection of methods tools for node.js, with the purpose of ensuring cross-platform support (Windows/Linux/OS X).
+`node-utils` is a collection of methods tools for node.js, with the purpose of ensuring cross-platform support (Windows/Linux/OS X).
 
 ## Install
 
-Install node-utils with npm:
+Install with npm:
 
     npm install --save-dev @asterics/node-utils
 
@@ -34,6 +34,8 @@ Available properties:
 #### Example
 
 ```javascript
+const { execute } = require("@asterics/node-utils");
+
 execute({
     cmd: "echo $FOO"
     success: "success!",
@@ -42,3 +44,21 @@ execute({
     verbose: true
 });
 ```
+
+### mkdirp(path)
+
+Create directory at `path` and required parent directories.
+
+Available parameters:
+
+* `path`: Absolute path to directory to create.
+
+  **Note**: `path` must be absolute.
+
+#### Example
+
+````javascript
+const { mkdirp } = require("@asterics/node-utils");
+
+mkdirp("/home/admin/temp/dir");
+````

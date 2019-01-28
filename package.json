@@ -1,6 +1,6 @@
 {
   "name": "@asterics/node-utils",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "node.js related utilities",
   "main": "index.js",
   "dependencies": {
@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sabicalija/node-utils.git"
+    "url": "git+https://github.com/asterics/node-utils.git"
   },
   "keywords": [
     "node",
     "util"
   ],
-  "author": "Alija Sabic",
+  "author": "AsTeRICS",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/sabicalija/node-utils/issues"
+    "url": "https://github.com/asterics/node-utils/issues"
   },
-  "homepage": "https://github.com/sabicalija/node-utils#readme"
+  "homepage": "https://github.com/asterics/node-utils#readme"
 }
