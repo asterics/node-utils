@@ -39,11 +39,24 @@ function execute({ cmd, success, error, env, fatal = false, verbose = false }) {
   }
 }
 
-function mkdirp(directory) {
-  if (!path.isAbsolute(directory)) return;
-  let parent = path.join(directory, "..");
-  if (parent !== path.join("/") && !fs.existsSync(parent)) mkdirp(parent);
-  if (!fs.existsSync(directory)) fs.mkdirSync(directory);
+function mkdirp(...directories) {
+  for (let directory of directories) {
+    if (!path.isAbsolute(directory)) continue;
+    let parent = path.join(directory, "..");
+    if (parent !== path.join("/") && !fs.existsSync(parent)) mkdirp(parent);
+    if (!fs.existsSync(directory)) fs.mkdirSync(directory);
+  }
 }
 
-module.exports = { execute, mkdirp };
+function hasShellCommand(...args) {
+  let has = true;
+  for (let cmd of args) {
+    if (!shell.which(cmd)) {
+      has = false;
+      break;
+    }
+  }
+  return has;
+}
+
+module.exports = { execute, mkdirp, hasShellCommand };

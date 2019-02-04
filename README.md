@@ -27,7 +27,7 @@ Available properties:
 * `cmd`: Command to execute.
 * `success`: Message on success.
 * `error`: Message on error.
-* `env`: Additional environment variables.
+* `[env]`: Additional environment variables.
 * `[fatal]`: Abort on error (default: false).
 * `[verbose]`: Verbose logging (default: false).
 
@@ -36,6 +36,7 @@ Available properties:
 ```javascript
 const { execute } = require("@asterics/node-utils");
 
+// -> bar
 execute({
     cmd: "echo $FOO"
     success: "success!",
@@ -45,7 +46,7 @@ execute({
 });
 ```
 
-### mkdirp(path)
+### mkdirp(path[, ...])
 
 Create directory at `path` and required parent directories.
 
@@ -53,12 +54,40 @@ Available parameters:
 
 * `path`: Absolute path to directory to create.
 
-  **Note**: `path` must be absolute.
+  **Note**: `path` must be an absolute path.
 
 #### Example
 
 ````javascript
 const { mkdirp } = require("@asterics/node-utils");
 
-mkdirp("/home/admin/temp/dir");
+// Single directory
+mkdirp("/home/admin/temp/foo");
+
+// Multiple directories
+mkdirp("/home/admin/temp/foo","/home/admin/temp/bar");
 ````
+
+### hasShellCommand(command[, ...])
+
+Check if `command` exists on the system.
+
+Available properties:
+
+* `command`: Shell command.
+
+Returns:
+
+`true` if provided `command` exist, `false` otherwise.
+
+#### Example
+
+```javascript
+const { hasCommand } = require("@asterics/node-utils");
+
+// Single command
+hasCommand("git");
+
+// Multiple commands
+hasCommand("git","less","nano");
+```
